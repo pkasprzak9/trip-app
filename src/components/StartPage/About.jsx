@@ -1,12 +1,6 @@
 import React from "react";
-import { Container } from "react-bootstrap";
-import { Row } from "react-bootstrap";
-import { Col } from "react-bootstrap";
-import { Accordion } from "react-bootstrap";
-import { Image } from "react-bootstrap";
-import { Carousel } from "react-bootstrap";
+import { Container, Row, Col, Accordion, Image } from "react-bootstrap";
 import styles from "../../style/components/StartPage/About.module.scss"
-import { Compass, People, Globe } from "react-bootstrap-icons";
 import aboutImage from "../../assets/images/Summer-Travel.svg";
 
 

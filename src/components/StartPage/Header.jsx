@@ -4,7 +4,6 @@ import { Row } from "react-bootstrap";
 import { Col } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import headerImage from "../../assets/images/Travel-Agency-For-Traveling.svg";
-import styles from "../../style/components/StartPage/Header.module.scss"
 
 export default function Header() {
   return (
