@@ -1,4 +1,7 @@
 # AI-Powered Trip Planner
+<img width="300" alt="Screenshot 2024-09-24 at 2 34 02 PM" src="https://github.com/user-attachments/assets/c9ea367d-3eae-4928-bb7b-ec23d7b385ed">
+<img width="700" alt="Screenshot 2024-09-24 at 2 33 25 PM" src="https://github.com/user-attachments/assets/2468ab25-5908-4515-a7f1-e54acd551ebf">
+
 
 Welcome to the **AI-Powered Trip Planner**, an app designed to provide personalized travel routes and recommendations, tailored specifically to your preferences.
 
