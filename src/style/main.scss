@@ -1,6 +1,8 @@
-/* The following block can be included in a custom.scss */
+/* Ustawienia dla Accordion */
+$accordion-button-active-bg: #00796B;
+$accordion-button-active-color: white;
 
-/* make the customizations */
+/* Dostosowanie kolorów motywu */
 $theme-colors: (
   'primary': #00796B,
   'secondary': #FFD54F,
@@ -9,5 +11,5 @@ $theme-colors: (
   'success': #388E3C
 );
 
-/* import bootstrap to set changes */
+/* Import Bootstrapa, aby zmiany zostały uwzględnione */
 @import '~bootstrap/scss/bootstrap';
