@@ -7,8 +7,8 @@ import headerImage from "../../assets/images/Travel-Agency-For-Traveling.svg";
 
 export default function Header() {
   return (
-    <div className="bg-secondary py-5 pb-lg-0">
-      <Container fluid="md py-5">
+    <div className="bg-secondary pt-lg-5 pb-5 pb-lg-0">
+      <Container fluid="md pb-5 pt-lg-5">
         <Row className="justify-content-center align-items-center py-lg-5">
           <Col className="text-center text-lg-start" xs={{span: 10, order: 1}} lg={{span: 6, order: 0}}>
             <h1>
