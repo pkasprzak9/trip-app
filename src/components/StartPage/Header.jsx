@@ -10,18 +10,18 @@ export default function Header() {
   return (
     <div className="bg-secondary py-5 pb-lg-0">
       <Container fluid="md py-5">
-        <Row className="justify-content-center align-items-center py-5 px-1">
-          <Col lg="6" className="text-center text-lg-start">
+        <Row className="justify-content-center align-items-center py-lg-5">
+          <Col className="text-center text-lg-start" xs={{span: 10, order: 1}} lg={{span: 6, order: 0}}>
             <h1>
               <div className="display-3 mb-3 text-primary">Discover Your Next Adventure</div>
               <div className="display-5 text-muted">
               Personalized travel routes powered by AI to make your journey unforgettable.
               </div>
             </h1>
-            <Button size="lg" variant="outline-primary" className="mt-5 me-3">Learn More</Button>
+            <Button as="a" href="#about" size="lg" variant="outline-primary" className="mt-5 me-3">Learn More</Button>
             <Button size="lg" className="mt-5">Start Now</Button>
           </Col>
-          <Col lg="6" className="d-none d-lg-block">
+          <Col xs="8" lg="6" className="mb-5 mb-lg-0">
             <img src={headerImage} className="img-fluid" alt="" />
           </Col>
         </Row>
