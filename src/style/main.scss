@@ -4,12 +4,35 @@ $accordion-button-active-color: white;
 
 /* Dostosowanie kolorów motywu */
 $theme-colors: (
-  'primary': #00796B,
-  'secondary': #FFD54F,
-  'info': #0288D1,
-  'danger': #E64A19,
-  'success': #388E3C
+  'primary': #00796B, // teal
+  'primary-light': #48A999, // lighter teal
+  'primary-dark': #004D40, // darker teal
+
+  'secondary': #FFD54F, // yellow
+  'secondary-light': #FFE082, // lighter yellow
+  'secondary-dark': #FFC107, // darker yellow
+
+  'info': #0288D1, // blue
+  'info-light': #4FC3F7, // lighter blue
+  'info-dark': #01579B, // darker blue
+
+  'danger': #E64A19, // red-orange
+  'danger-light': #FF8A65, // lighter red-orange
+  'danger-dark': #D84315, // darker red-orange
+
+  'success': #388E3C, // green
+  'success-light': #81C784, // lighter green
+  'success-dark': #2E7D32, // darker green
+
+  // Standalone light and dark
+  'light': #f8f9fa, // very light gray
+  'dark': #343a40, // dark gray
+
+  // Light yellow with a subtle touch
+  'light-yellow': #FFF9C4 // very light yellow
 );
+
+
 
 /* Import Bootstrapa, aby zmiany zostały uwzględnione */
 @import '~bootstrap/scss/bootstrap';
