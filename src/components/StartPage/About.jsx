@@ -6,8 +6,8 @@ import aboutImage from "../../assets/images/Summer-Travel.svg";
 
 export default function About() {
   return (
-    <section id="about" className={`${styles.about} py-5`}>
-      <Container fluid="md" className="mt-lg-5 py-5">
+    <section id="about" className={`${styles.about}`}>
+      <Container fluid="md" className="mt-5 pt-5">
         <div className="text-center px-5">
           <h2 className="text-primary">Discover Pathify</h2>
           <p className="lead text-muted">Pathify uses AI to craft personalized travel routes, ensuring your journey matches your preferences.</p>
