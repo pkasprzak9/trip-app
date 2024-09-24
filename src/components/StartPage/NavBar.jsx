@@ -19,7 +19,7 @@ export default function NavBar() {
             <Nav className="justify-content-center align-items-center gap-3 flex-grow-1 pe-3">
               <Nav.Link href="#about">About</Nav.Link>
               <Nav.Link href="#">Features</Nav.Link>
-              <Nav.Link href="#">Pricing</Nav.Link>
+              <Nav.Link href="#">How It Works</Nav.Link>
             </Nav>
             <Nav className="d-flex flex-row justify-content-center align-items-center mb-5 mb-lg-0">
               <Nav.Link href="#" className=" me-3">Login</Nav.Link>
