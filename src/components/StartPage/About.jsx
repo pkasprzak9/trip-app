@@ -16,7 +16,7 @@ export default function About() {
           <Col xs="10" lg="5">
             <Image src={aboutImage} className="img-fluid"></Image>
           </Col>
-          <Col xs="10" lg="5">
+          <Col lg="5">
             <Accordion defaultActiveKey="0">
               <Accordion.Item eventKey="0">
                 <Accordion.Header>AI-Powered Routes</Accordion.Header>
