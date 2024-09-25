@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "../../style/components/StartPage/Features.module.scss"
 import { Container, Row, Col, Card } from "react-bootstrap";
 import img1 from "../../assets/images/Intercontinental-transportation.svg"
 import img2 from "../../assets/images/Delivery-location.svg"
@@ -18,8 +19,8 @@ export default function Features() {
 
         <Row className="align-items-stretch g-5 g-lg-3 justify-content-center mt-5 py-5">
           <Col xs="8" lg="4" xl="3">
-            <Card className="h-100">
-              <Card.Img variant="top" src={img1} className="bg-light"/>
+            <Card className={`${styles.card} h-100`}>
+              <Card.Img variant="top" src={img1} className={`${styles.cardImg} bg-light`}/>
               <Card.Body>
                 <Card.Title>Personalized Route Creation</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">Craft your perfect journey effortlessly.</Card.Subtitle>
@@ -28,8 +29,8 @@ export default function Features() {
             </Card>
           </Col>
           <Col xs="8" lg="4" xl="3">
-            <Card className="h-100">
-              <Card.Img variant="top" src={img2} className="bg-light"/>
+            <Card className={`${styles.card} h-100`}>
+              <Card.Img variant="top" src={img2} className={`${styles.cardImg} bg-light`}/>
               <Card.Body>
                 <Card.Title>Map Generation</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">Navigate your adventures with ease.</Card.Subtitle>
@@ -38,8 +39,8 @@ export default function Features() {
             </Card>
           </Col>
           <Col xs="8" lg="4" xl="3">
-            <Card className="h-100">
-              <Card.Img variant="top" src={img3} className="bg-light"/>
+            <Card className={`${styles.card} h-100`}>
+              <Card.Img variant="top" src={img3} className={`${styles.cardImg} bg-light`}/>
               <Card.Body>
                 <Card.Title>Save Preferences for Future Trips</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">Travel smarter with saved choices.</Card.Subtitle>
@@ -48,8 +49,8 @@ export default function Features() {
             </Card>
           </Col>
           <Col xs="8" lg="4" xl="3">
-            <Card className="h-100">
-              <Card.Img variant="top" src={img4} className="bg-light"/>
+            <Card className={`${styles.card} h-100`}>
+              <Card.Img variant="top" src={img4} className={`${styles.cardImg} bg-light`}/>
               <Card.Body>
                 <Card.Title>Nearby Recommendations</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">Uncover hidden gems on your journey.</Card.Subtitle>
