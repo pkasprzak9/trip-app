@@ -4,7 +4,7 @@ import { Display } from "react-bootstrap-icons";
 
 export default function NavBar() {
   return (
-    <Navbar bg="secondary" expand="lg">
+    <Navbar bg="secondary" expand="lg" sticky="top">
       <Container fluid="lg">
         <Navbar.Brand href="#" className="fs-4 fw-bold text-primary">Pathify</Navbar.Brand>
         <Navbar.Toggle aria-controls="offcanvasNavbar" style={{border: 'none'}}/>
