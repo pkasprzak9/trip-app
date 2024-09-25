@@ -21,19 +21,19 @@ export default function About() {
               <Accordion.Item eventKey="0">
                 <Accordion.Header>AI-Powered Routes</Accordion.Header>
                 <Accordion.Body>
-                  Our app uses state-of-the-art AI to craft routes tailored to your preferences.
+                  Harness the power of cutting-edge AI to discover routes perfectly tailored to your preferences. With us, every journey becomes an adventure!
                 </Accordion.Body>
               </Accordion.Item>
               <Accordion.Item eventKey="1">
                 <Accordion.Header>Personalized Experience</Accordion.Header>
                 <Accordion.Body>
-                  Enjoy a unique travel experience designed just for you, based on your tastes.
+                  Experience unforgettable moments with unique suggestions that match your tastes. Your ideal getaway is just a tap away!
                 </Accordion.Body>
               </Accordion.Item>
               <Accordion.Item eventKey="2">
                 <Accordion.Header>Global Destinations</Accordion.Header>
                 <Accordion.Body>
-                  Discover destinations across the globe with routes optimized for your journey.
+                  Explore the world’s most beautiful spots with routes optimized just for you. It’s time for an adventure that will enchant you!
                 </Accordion.Body>
               </Accordion.Item>
             </Accordion>
