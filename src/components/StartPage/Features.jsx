@@ -2,7 +2,7 @@ import React from "react";
 import styles from "../../style/components/StartPage/Features.module.scss"
 import { Container, Row, Col, Card } from "react-bootstrap";
 import img1 from "../../assets/images/Intercontinental-transportation.svg"
-import img2 from "../../assets/images/Delivery-location.svg"
+import img2 from "../../assets/images/Young-Student-Girl-in-Glasses-Studying-Geography.svg"
 import img3 from "../../assets/images/Men-planning-for-holiday.svg"
 import img4 from "../../assets/images/Museum-Photography.svg"
 
