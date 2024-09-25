@@ -8,8 +8,8 @@ import headerImage from "../../assets/images/Travel-Agency-For-Traveling.svg";
 export default function Header() {
   return (
     <div className="bg-secondary pt-lg-5 pb-5 pb-lg-0">
-      <Container fluid="md pb-5 pt-lg-5">
-        <Row className="justify-content-center align-items-center py-lg-5">
+      <Container fluid="md py-5">
+        <Row className="justify-content-center align-items-center py-5">
           <Col className="text-center text-lg-start" xs={{span: 10, order: 1}} lg={{span: 6, order: 0}}>
             <h1>
               <div className="display-3 mb-3 text-primary">Discover Your Next Adventure</div>
@@ -20,7 +20,7 @@ export default function Header() {
             <Button as="a" href="#about" size="lg" variant="outline-primary" className="mt-5 me-3">Learn More</Button>
             <Button size="lg" className="mt-5">Start Now</Button>
           </Col>
-          <Col xs="8" lg="6" className="mb-5 mb-lg-0">
+          <Col xs="8" lg="6" className="d-none d-lg-block mb-5 mb-lg-0">
             <img src={headerImage} className="img-fluid" alt="" />
           </Col>
         </Row>
