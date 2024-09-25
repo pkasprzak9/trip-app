@@ -2,6 +2,7 @@ import NavBar from "./NavBar";
 import Header from "./Header";
 import About from "./About";
 import Features from "./Features";
+import HowItWorks from "./HowItWorks";
 
 export default function StartPage() {
   return (
@@ -10,6 +11,7 @@ export default function StartPage() {
       <Header></Header>
       <About></About>
       <Features></Features>
+      <HowItWorks></HowItWorks>
     </>
   )
 }
