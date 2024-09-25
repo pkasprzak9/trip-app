@@ -18,7 +18,7 @@ export default function Features() {
         </div>
 
         <Row className="align-items-stretch g-5 g-lg-3 justify-content-center mt-5 py-5">
-          <Col xs="8" lg="4" xl="3">
+          <Col xs="11" lg="4" xl="3">
             <Card className={`${styles.card} h-100`}>
               <Card.Img variant="top" src={img1} className={`${styles.cardImg} bg-light`}/>
               <Card.Body>
@@ -28,7 +28,7 @@ export default function Features() {
               </Card.Body>
             </Card>
           </Col>
-          <Col xs="8" lg="4" xl="3">
+          <Col xs="11" lg="4" xl="3">
             <Card className={`${styles.card} h-100`}>
               <Card.Img variant="top" src={img2} className={`${styles.cardImg} bg-light`}/>
               <Card.Body>
@@ -38,7 +38,7 @@ export default function Features() {
               </Card.Body>
             </Card>
           </Col>
-          <Col xs="8" lg="4" xl="3">
+          <Col xs="11" lg="4" xl="3">
             <Card className={`${styles.card} h-100`}>
               <Card.Img variant="top" src={img3} className={`${styles.cardImg} bg-light`}/>
               <Card.Body>
@@ -48,7 +48,7 @@ export default function Features() {
               </Card.Body>
             </Card>
           </Col>
-          <Col xs="8" lg="4" xl="3">
+          <Col xs="11" lg="4" xl="3">
             <Card className={`${styles.card} h-100`}>
               <Card.Img variant="top" src={img4} className={`${styles.cardImg} bg-light`}/>
               <Card.Body>
