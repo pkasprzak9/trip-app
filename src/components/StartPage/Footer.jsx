@@ -4,10 +4,10 @@ import { Facebook, Instagram, TwitterX, Tiktok } from "react-bootstrap-icons";
 
 export default function Footer() {
   return (
-    <footer className="bg-secondary py-4">
+    <footer className="bg-secondary">
       <Container fluid="md">
         <Row className="justify-content-center align-items-center">
-          <Col xs="10" lg="6" className="text-center">
+          <Col xs="10" lg="6" className="text-center mt-3">
             <a href="" className="icon-link text-primary" aria-label="Facebook">
               <Facebook className="mx-3"></Facebook>
             </a>
@@ -23,7 +23,7 @@ export default function Footer() {
           </Col>
         </Row>
         <Row className="justify-content-center align-items-center">
-          <Col xs="10" lg="6" className="text-center mt-3 text-primary">
+          <Col xs="10" lg="6" className="text-center mt-2 text-primary">
             <p>&copy; {new Date().getFullYear()} Pathify. All rights reserved.</p>
           </Col>
         </Row>
