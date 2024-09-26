@@ -5,6 +5,7 @@ import Features from "./Features";
 import HowItWorks from "./HowItWorks";
 import Contact from "./Contact";
 import Benefits from "./Benefits";
+import Footer from "./Footer";
 
 export default function StartPage() {
   return (
@@ -16,6 +17,7 @@ export default function StartPage() {
       <Benefits></Benefits>
       {/* <Features></Features> */}
       <Contact></Contact>
+      <Footer></Footer>
     </>
   )
 }
