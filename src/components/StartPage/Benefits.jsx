@@ -4,7 +4,7 @@ import { Gear, LightningCharge, Phone, Clock  } from "react-bootstrap-icons";
 
 export default function Benefits() {
   return (
-    <section id="features" className="bg-light">
+    <section id="benefits" className="bg-light">
       <Container fluid="md" className="py-5">
         <div className="text-center px-5">
           <h2 className="text-primary">Why Planning with Pathify Feels Different</h2>
@@ -13,7 +13,7 @@ export default function Benefits() {
           </p>
         </div>
 
-        <Row className="align-items-stretch g-5 g-lg-3 justify-content-center mt-5 py-5">
+        <Row className="align-items-stretch g-4 justify-content-center mt-5 py-5">
         <Col xs="10" lg="5" className="text-center">
             <LightningCharge width={50} height={50} className="text-primary mb-3"></LightningCharge>
             <h3 className="text-primary">Speed</h3>
