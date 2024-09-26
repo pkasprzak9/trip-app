@@ -10,7 +10,7 @@ export default function About() {
       <Container fluid="md" className="py-5">
         <div className="text-center px-5">
           <h2 className="text-primary">Discover Pathify</h2>
-          <p className="lead text-muted">Pathify uses AI to craft personalized travel routes, ensuring your journey matches your preferences.</p>
+          <p className="lead text-muted">Pathify leverages AI to create personalized travel routes, ensuring every trip is perfectly aligned with your preferences.</p>
         </div>
         <Row className="py-5 mt-5 align-items-center justify-content-evenly">
           <Col xs="10" lg="5" className="mb-5 mb-lg-0">
@@ -21,19 +21,19 @@ export default function About() {
               <Accordion.Item eventKey="0">
                 <Accordion.Header>AI-Powered Routes</Accordion.Header>
                 <Accordion.Body>
-                  Harness the power of cutting-edge AI to discover routes perfectly tailored to your preferences. With us, every journey becomes an adventure!
+                  Unlock the potential of AI to find routes designed just for you. With Pathify, every trip becomes an adventure!
                 </Accordion.Body>
               </Accordion.Item>
               <Accordion.Item eventKey="1">
                 <Accordion.Header>Personalized Experience</Accordion.Header>
                 <Accordion.Body>
-                  Experience unforgettable moments with unique suggestions that match your tastes. Your ideal getaway is just a tap away!
+                  Enjoy personalized suggestions that match your unique preferences. Your perfect escape is only a tap away!
                 </Accordion.Body>
               </Accordion.Item>
               <Accordion.Item eventKey="2">
                 <Accordion.Header>Global Destinations</Accordion.Header>
                 <Accordion.Body>
-                  Explore the world’s most beautiful spots with routes optimized just for you. It’s time for an adventure that will enchant you!
+                  Discover stunning destinations worldwide, with routes tailored just for you. Embark on an adventure designed to inspire!
                 </Accordion.Body>
               </Accordion.Item>
             </Accordion>
