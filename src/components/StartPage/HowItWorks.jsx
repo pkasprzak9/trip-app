@@ -7,7 +7,7 @@ import fourthImage from "../../assets/images/Outer-space.svg";
 
 export default function HowItWorks() {
   return (
-    <section id="howItWorks" className="bg-light">
+    <section id="howItWorks">
       <Container fluid="md" className="py-5">
         <div className="text-center px-5">
           <h2 className="text-primary">The Future of Travel Planning</h2>

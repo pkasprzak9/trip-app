@@ -4,6 +4,7 @@ import About from "./About";
 import Features from "./Features";
 import HowItWorks from "./HowItWorks";
 import Contact from "./Contact";
+import Benefits from "./Benefits";
 
 export default function StartPage() {
   return (
@@ -11,8 +12,9 @@ export default function StartPage() {
       <NavBar></NavBar>
       <Header></Header>
       <About></About>
-      <Features></Features>
       <HowItWorks></HowItWorks>
+      <Benefits></Benefits>
+      {/* <Features></Features> */}
       <Contact></Contact>
     </>
   )
