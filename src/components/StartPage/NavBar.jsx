@@ -19,8 +19,8 @@ export default function NavBar() {
           <Offcanvas.Body className="d-flex flex-column flex-lg-row">
             <Nav className="justify-content-center align-items-center gap-3 flex-grow-1">
               <Nav.Link href="#about">About</Nav.Link>
-              <Nav.Link href="#features">Features</Nav.Link>
               <Nav.Link href="#howItWorks">How It Works</Nav.Link>
+              <Nav.Link href="#benefits">Why Us</Nav.Link>
             </Nav>
             <Nav className="d-flex flex-row justify-content-center align-items-center mb-5 mb-lg-0">
               <Nav.Link href="#" className=" me-3 text-decoration-underline">Login</Nav.Link>
