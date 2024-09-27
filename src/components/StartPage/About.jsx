@@ -14,7 +14,7 @@ export default function About() {
         </div>
         <Row className="py-5 mt-5 align-items-center justify-content-evenly">
           <Col xs="10" lg="5" className="mb-5 mb-lg-0">
-            <Image src={aboutImage} className="img-fluid"></Image>
+            <Image src={aboutImage} className="img-fluid" alt="Illustration of woman sitting on the beach in front of the sea"></Image>
           </Col>
           <Col lg="5">
             <Accordion defaultActiveKey="0">
