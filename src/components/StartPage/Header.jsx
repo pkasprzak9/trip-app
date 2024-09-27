@@ -17,7 +17,7 @@ export default function Header() {
             <Button size="lg" className="mt-5">Start Now</Button>
           </Col>
           <Col xs="8" lg="6" className="d-none d-lg-block mb-5 mb-lg-0">
-            <img src={headerImage} className="img-fluid" alt="Illustrated man standing in front of the earth globe with map in his hand" />
+            <img src={headerImage} className="img-fluid" alt="Man standing in front of the earth globe with map in his hand" />
           </Col>
         </Row>
       </Container>
