@@ -5,7 +5,7 @@ const router = express.Router();
 
 // POST /api/users
 router.post('/', async (req, res) => {
-  const { email, password } = req.body;
+  const { firstName, lastName, email, password } = req.body;
 
   try {
     // Check if user already exists
@@ -19,6 +19,8 @@ router.post('/', async (req, res) => {
 
     // Creating new user
     const newUser = new User({
+      firstName,
+      lastName,
       email,
       password: hashedPassword
     });
@@ -29,7 +31,7 @@ router.post('/', async (req, res) => {
     // Return response with new user (without password)
     res.status(201).json({
       message: 'User registered successfully',
-      user: { email: newUser.email }
+      user: { firstName: newUser.firstName, lastName: newUser.lastName, email: newUser.email }
     });
   } catch (err) {
     res.status(500).json({ error: 'Server error' });
