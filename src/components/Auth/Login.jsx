@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Navbar, Container, Row, Col, Form, Button, FloatingLabel } from "react-bootstrap";
 
 function NavBar() {
@@ -12,6 +12,120 @@ function NavBar() {
 }
 
 function LoginForm() {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  })
+  const [formErrors, setFormErrors] = useState({
+    email: null,
+    password: null
+  })
+
+  const [touched, setTouched] = useState({
+    email: false,
+    password: false
+  })
+
+  const validateEmail = email => {
+    if (!email.trim()) {
+      return 'Email is required.'
+    };
+
+    const emailRegex = /\S+@\S+\.\S+/;
+    if (!emailRegex.test(email)) {
+      return 'Enter correct email address.'
+    };
+
+    return null;
+  };
+
+  const validatePassword = password => {
+    if (!password.trim()) {
+      return 'Password is required.';
+    };
+    return null;
+  }
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData(prevData => ({
+      ...prevData,
+      [name]: value
+    }));
+  };
+
+  const handleBlur = (e) => {
+    const { name } = e.target;
+
+    setTouched(prevTouched => ({
+      ...prevTouched,
+      [name]: true
+    }));
+
+    let error = null;
+
+    switch(name) {
+      case 'email':
+        error = validateEmail(formData.email);
+        break;
+      case 'password':
+        error = validatePassword(formData.password);
+        break;
+      default:
+        break;
+    }
+
+    setFormErrors(prevErrors => ({
+      ...prevErrors,
+      [name]: error
+    }))
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const emailError = validateEmail(formData.email);
+    const passwordError = validatePassword(formData.password);
+
+    setFormErrors({
+      email: emailError,
+      password: passwordError
+    });
+
+    setTouched({
+      email: true,
+      password: true
+    });
+
+    if (emailError || passwordError) {
+      return;
+    };
+
+    const dataToSend = {
+      email: formData.email,
+      password: formData.password
+    };
+
+    // HERE GOES THE BACKEND LOGIC
+    // NEED A METHOD G+FOR CHECKING IF EMAIL ALREADY EXISTS AND THE STRENGTH OF PASSWORD
+
+    setFormData({
+      email: '',
+      password: ''
+    });
+
+    setFormErrors({
+      email: null,
+      password: null
+    });
+
+    setTouched({
+      email: false,
+      password: false
+    });
+  };
+
   return (
     <div className="">
       <Container fluid="md" className="justify-content-center align-items-center py-5 mt-3">
@@ -22,15 +136,47 @@ function LoginForm() {
 
         <Row className="mt-5 justify-content-center align-items-center">
           <Col xs="10" lg="6">
-            <Form>
+            <Form noValidate onSubmit={handleSubmit}>
               {/* Email input with FloatingLabel */}
-              <FloatingLabel controlId="formEmail" label="Email address" className="mb-4">
-                <Form.Control type="email" placeholder="Email" required />
+              <FloatingLabel
+                controlId="email"
+                label="Email address"
+                className="mb-3">
+                <Form.Control
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  isInvalid={touched.email && !!formErrors.email}
+                  isValid={touched.email && !formErrors.email}
+                  aria-invalid={touched.email && !!formData.email}
+                  aria-describedby="email-error"/>
+                <Form.Control.Feedback
+                  type="invalid"
+                  id="email-error">
+                  {formErrors.email}
+                </Form.Control.Feedback>
               </FloatingLabel>
 
               {/* Password input with FloatingLabel */}
-              <FloatingLabel controlId="formPassword" label="Password" className="mb-4">
-                <Form.Control type="password" placeholder="Password" required />
+              <FloatingLabel
+                controlId="formPassword"
+                label="Password"
+                className="mb-4">
+                <Form.Control
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  onBlur={handleBlur}/>
+                <Form.Control.Feedback
+                  type="invalid"
+                  id="password-error">
+                  {formErrors.password}
+                </Form.Control.Feedback>
               </FloatingLabel>
 
               {/* Submit button */}
