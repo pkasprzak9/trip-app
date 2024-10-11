@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Navbar, Container, Row, Col, Form, Button, FloatingLabel, Modal, ModalHeader } from "react-bootstrap";
 
 function NavBar() {
@@ -40,6 +40,8 @@ function RegisterForm() {
   const [feedbackMessage, setFeedbackMessage] = useState('');
 
   const [showModal, setShowModal] = useState(false);
+
+  const navigate = useNavigate();
 
   const validateFirstName = (name) => {
     if(!name.trim()) {
@@ -174,10 +176,12 @@ function RegisterForm() {
       };
 
       const data = await response.json();
-      console.log(`User registered: ${data}`);
 
-      setFeedbackMessage('User registered successfully!');
-      setShowModal(true);
+      const token = data.token;
+
+      localStorage.setItem("authToken", token);
+
+      navigate("/dashboard");
 
       setFormData({
         firstName: '',
@@ -325,11 +329,11 @@ function RegisterForm() {
               </div>
             </Form>
             <Modal show={showModal} onHide={() => setShowModal(false)} centered>
-              <Modal.Header closeButton className="bg-secondary">
+              <ModalHeader closeButton className="bg-secondary">
                 <Modal.Title>
                   Registration Status
                 </Modal.Title>
-              </Modal.Header>
+              </ModalHeader>
               <Modal.Body>
                 {feedbackMessage}
               </Modal.Body>
