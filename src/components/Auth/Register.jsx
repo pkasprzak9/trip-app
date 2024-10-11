@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Navbar, Container, Row, Col, Form, Button, FloatingLabel } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { Navbar, Container, Row, Col, Form, Button, FloatingLabel, Modal, ModalHeader } from "react-bootstrap";
 
 function NavBar() {
   return (
     <Navbar bg="secondary" className="py-3">
       <Container fluid="lg" className="justify-content-center">
-        <Navbar.Brand href="#" className="fs-4 fw-bold text-primary text-center">Pathify</Navbar.Brand>
+        <Navbar.Brand as={Link} to={"/"} className="fs-4 fw-bold text-primary text-center">Pathify</Navbar.Brand>
       </Container>
     </Navbar>
   );
@@ -35,6 +36,10 @@ function RegisterForm() {
     password: false,
     confirmPassword: false
   });
+
+  const [feedbackMessage, setFeedbackMessage] = useState('');
+
+  const [showModal, setShowModal] = useState(false);
 
   const validateFirstName = (name) => {
     if(!name.trim()) {
@@ -164,11 +169,15 @@ function RegisterForm() {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to register');
+        const responseData = await response.json();
+        throw new Error(responseData.message || 'Failed to register');
       };
 
       const data = await response.json();
       console.log(`User registered: ${data}`);
+
+      setFeedbackMessage('User registered successfully!');
+      setShowModal(true);
 
       setFormData({
         firstName: '',
@@ -194,13 +203,15 @@ function RegisterForm() {
         confirmPassword: false
       });
     } catch (err) {
-      console.log(`Error: ${err}`);
+      console.log(`${err}`);
+      setFeedbackMessage(err.message);
+      setShowModal(true);
     };
   };
 
   return (
     <div className="">
-      <Container fluid="md" className="justify-content-center align-items-center py-5 mt-3">
+      <Container fluid="md" className="justify-content-center align-items-center py-5 mt-5">
         <div className="text-center px-5">
           <h2 className="display-5">Join Pathify</h2>
           <p className="text-muted fs-3">Create your account to start planning your perfect trips.</p>
@@ -310,9 +321,24 @@ function RegisterForm() {
               </Button>
 
               <div className="text-center mt-3">
-                <a href="">Already have an account?</a>
+                <Link to={"/login"}>Already have an account?</Link>
               </div>
             </Form>
+            <Modal show={showModal} onHide={() => setShowModal(false)} centered>
+              <Modal.Header closeButton className="bg-secondary">
+                <Modal.Title>
+                  Registration Status
+                </Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                {feedbackMessage}
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="primary" onClick={() => setShowModal(false)}>
+                  Close
+                </Button>
+              </Modal.Footer>
+            </Modal>
           </Col>
         </Row>
       </Container>
@@ -324,7 +350,7 @@ export default function Register() {
   return (
     <>
       <NavBar />
-      <RegisterForm />
+      <RegisterForm/>
     </>
   );
 }
