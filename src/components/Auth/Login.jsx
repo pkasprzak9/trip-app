@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Navbar, Container, Row, Col, Form, Button, FloatingLabel } from "react-bootstrap";
 
 function NavBar() {
@@ -27,6 +27,11 @@ function LoginForm() {
     password: false
   })
 
+  const [feedbackMessage, setFeedbackMessage] = useState('');
+
+
+  const navigate = useNavigate();
+
   const validateEmail = email => {
     if (!email.trim()) {
       return 'Email is required.'
@@ -40,12 +45,12 @@ function LoginForm() {
     return null;
   };
 
-  const validatePassword = password => {
+  const validatePassword = (password) => {
     if (!password.trim()) {
-      return 'Password is required.';
-    };
+      return "Password is required.";
+    }
     return null;
-  }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -83,7 +88,7 @@ function LoginForm() {
     }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const emailError = validateEmail(formData.email);
@@ -108,23 +113,47 @@ function LoginForm() {
       password: formData.password
     };
 
-    // HERE GOES THE BACKEND LOGIC
-    // NEED A METHOD G+FOR CHECKING IF EMAIL ALREADY EXISTS AND THE STRENGTH OF PASSWORD
+    try {
+      const response = await fetch('http://localhost:5001/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dataToSend)
+      });
 
-    setFormData({
-      email: '',
-      password: ''
-    });
+      const data = await response.json();
+      console.log(data);
 
-    setFormErrors({
-      email: null,
-      password: null
-    });
+      if (response.ok) {
+        console.log('Logged in successfully: ', data);
+        localStorage.setItem('token', data.token);
+        navigate('/dashboard');
+        // history.push('/dashboard');
+        setFormData({
+          email: '',
+          password: ''
+        });
 
-    setTouched({
-      email: false,
-      password: false
-    });
+        setFormErrors({
+          email: null,
+          password: null
+        });
+
+        setTouched({
+          email: false,
+          password: false
+        });
+
+        setFeedbackMessage('');
+      } else {
+        setFeedbackMessage(data.message || 'Login failed. Please try again.');
+      }
+
+    } catch(err) {
+      console.log(err);
+      setFeedbackMessage('An error occurred. Please try again later.');
+    }
   };
 
   return (
@@ -191,6 +220,12 @@ function LoginForm() {
                   <a href="#" className="text-primary text-decoration-none ms-2">Click here to reset it</a>.
                 </p>
               </div>
+
+              {feedbackMessage && (
+                <div className="text-danger text-center my-3">
+                  {feedbackMessage}
+                </div>
+              )}
             </Form>
           </Col>
         </Row>
