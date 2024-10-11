@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Navbar, Nav, Container, Offcanvas, Button } from "react-bootstrap";
 import styles from '../../style/components/StartPage/NavBar.module.scss';
 
@@ -69,6 +70,8 @@ export default function NavBar() {
             </Nav>
             <Nav className="d-flex flex-row justify-content-center align-items-center mb-5 mb-lg-0">
               <Nav.Link
+                as={Link}
+                to={"/login"}
                 href="#"
                 className={`me-3 text-decoration-underline ${styles.navLink}`}
                 aria-role="button"
@@ -78,6 +81,8 @@ export default function NavBar() {
                 Login
               </Nav.Link>
               <Button
+                as={Link}
+                to={"/register"}
                 variant="primary"
                 aria-label="Sign up"
                 className={styles.navButton}

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Navbar, Container, Row, Col, Form, Button, FloatingLabel } from "react-bootstrap";
 
 function NavBar() {
   return (
     <Navbar bg="secondary" sticky="top" className="py-3">
       <Container fluid="lg" className="justify-content-center">
-        <Navbar.Brand href="#" className="fs-4 fw-bold text-primary text-center">Pathify</Navbar.Brand>
+        <Navbar.Brand as={Link} to={"/"} className="fs-4 fw-bold text-primary text-center">Pathify</Navbar.Brand>
       </Container>
     </Navbar>
   );
