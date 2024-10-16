@@ -1,11 +1,24 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Navbar, Nav, Container, Dropdown } from "react-bootstrap";
 import { Person } from "react-bootstrap-icons";
 import styles from "../../style/components/UserPanel/NavBar.module.scss";
 import avatar from "../../assets/images/user.png";
+import { AuthContext } from "../../context/AuthContext";
+import { UserContext } from "../../context/UserContext";
 
 export default function NavBar() {
+  const navigate = useNavigate();
+  const { logout } = useContext(AuthContext);
+  const { addData } = useContext(UserContext);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    addData({});
+    logout();
+    navigate('/');
+  }
+
   return (
     <>
       <Navbar className="bg-secondary">
@@ -24,7 +37,7 @@ export default function NavBar() {
                 <Dropdown.Item as={Link} to="/profile">My Profile</Dropdown.Item>
                 <Dropdown.Item as={Link} to="/settings">Settings</Dropdown.Item>
                 <Dropdown.Divider />
-                <Dropdown.Item as={Link} to="/logout">Logout</Dropdown.Item>
+                <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
         </Container>
