@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Navbar, Container, Row, Col, Form, Button, FloatingLabel, Modal, ModalHeader } from "react-bootstrap";
+import { AuthContext } from "../../context/AuthContext";
+import { UserContext } from "../../context/UserContext";
 
 function NavBar() {
   return (
@@ -37,9 +39,16 @@ function RegisterForm() {
     confirmPassword: false
   });
 
+  const { login } = useContext(AuthContext);
+  const { addData } = useContext(UserContext);
+
   const [feedbackMessage, setFeedbackMessage] = useState('');
 
   const [showModal, setShowModal] = useState(false);
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const [isUserLoaded, setIsUserLoaded] = useState(false);
 
   const navigate = useNavigate();
 
@@ -136,6 +145,9 @@ function RegisterForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+
     const firstNameError = validateFirstName(formData.firstName);
     const lastNameError = validateLastName(formData.lastName);
     const emailError = validateEmail(formData.email);
@@ -180,8 +192,8 @@ function RegisterForm() {
       const token = data.token;
 
       localStorage.setItem("authToken", token);
-
-      navigate("/dashboard");
+      setIsUserLoaded(true);
+      login();
 
       setFormData({
         firstName: '',
@@ -211,7 +223,15 @@ function RegisterForm() {
       setFeedbackMessage(err.message);
       setShowModal(true);
     };
+    setIsSubmitting(false);
   };
+
+  useEffect(() => {
+    if (isUserLoaded) {
+      navigate("/dashboard");
+      setIsUserLoaded(false);
+    }
+  }, [isUserLoaded, navigate]);
 
   return (
     <div className="">
