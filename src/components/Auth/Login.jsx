@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Navbar, Container, Row, Col, Form, Button, FloatingLabel } from "react-bootstrap";
+import { AuthContext } from "../../context/AuthContext";
+import { UserContext } from "../../context/UserContext";
 
 function NavBar() {
   return (
@@ -29,8 +31,15 @@ function LoginForm() {
 
   const [feedbackMessage, setFeedbackMessage] = useState('');
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const [isUserLoaded, setIsUserLoaded] = useState(false);
+
 
   const navigate = useNavigate();
+
+  const { login } = useContext(AuthContext);
+  const { userData, addData } = useContext(UserContext);
 
   const validateEmail = email => {
     if (!email.trim()) {
@@ -91,6 +100,9 @@ function LoginForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+
     const emailError = validateEmail(formData.email);
     const passwordError = validatePassword(formData.password);
 
@@ -123,13 +135,14 @@ function LoginForm() {
       });
 
       const data = await response.json();
-      console.log(data);
 
       if (response.ok) {
-        console.log('Logged in successfully: ', data);
         localStorage.setItem('token', data.token);
-        navigate('/dashboard');
-        // history.push('/dashboard');
+        addData(data.user);
+        login();
+
+        setIsUserLoaded(true);
+
         setFormData({
           email: '',
           password: ''
@@ -154,7 +167,17 @@ function LoginForm() {
       console.log(err);
       setFeedbackMessage('An error occurred. Please try again later.');
     }
+    setIsSubmitting(false);
   };
+
+
+  useEffect(() => {
+    if(isUserLoaded) {
+      navigate('/dashboard');
+      setIsUserLoaded(false);
+    }
+  }, [isUserLoaded, navigate]);
+
 
   return (
     <div className="">
