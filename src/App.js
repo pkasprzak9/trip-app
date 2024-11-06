@@ -1,7 +1,7 @@
 import StartPage from "./components/StartPage/StartPage";
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
-import Dashboard from "./components/UserPanel/Dashboard";
+import UserPanel from "./components/UserPanel/UserPanel";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import { AuthProvider } from "./context/AuthContext";
@@ -17,7 +17,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             {/* Chroniona trasa */}
-            <Route path="/dashboard" element={<PrivateRoute element={<Dashboard />} />} />
+            <Route path="/dashboard" element={<PrivateRoute element={<UserPanel />} />} />
           </Routes>
         </Router>
       </UserProvider>
