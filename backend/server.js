@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const registerRoutes = require('./routes/register');
 const authRoutes = require('./routes/auth');
+const generateRoutes = require('./routes/generate');
 require('dotenv').config();
 
 const app = express();
@@ -15,6 +16,7 @@ app.use(express.json());
 // ROUTES
 app.use('/api/register', registerRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/generate-route', generateRoutes)
 
 // MongoDB CONNECTION
 const connectToDatabase = async () => {

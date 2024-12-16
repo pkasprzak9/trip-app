@@ -39,20 +39,55 @@ export default function NewRouteForm() {
     fetchCountries();
   }, []);
 
-  const generateRoute = () => {
-    console.log("Generate Route function is called");
-    console.log("Generating route with data:", formData);
-    setFormData({
-      destinations: [],
-      dateFrom: '',
-      dateTo: '',
-      transportation: '',
-      accommodation: '',
-      specialRequests: '',
-      budget: '',
-      interests: [],
-    });
-  };
+
+  const generateRoute = async () => {
+    try {
+      const response = await fetch('http://localhost:5001/api/generate-route', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      const data = await response.json();
+      console.log('Backend response', data);
+
+      if (response.ok) {
+        alert('Route generated successfully!');
+        setFormData({
+          destinations: [],
+          dateFrom: '',
+          dateTo: '',
+          transportation: '',
+          accommodation: '',
+          specialRequests: '',
+          budget: '',
+          interests: [],
+        });
+      } else {
+        alert('Failed to generate route');
+      }
+    } catch (err) {
+      alert(err);
+      console.log(err);
+    }
+  }
+
+  // const generateRoute = () => {
+  //   console.log("Generate Route function is called");
+  //   console.log("Generating route with data:", formData);
+  //   setFormData({
+  //     destinations: [],
+  //     dateFrom: '',
+  //     dateTo: '',
+  //     transportation: '',
+  //     accommodation: '',
+  //     specialRequests: '',
+  //     budget: '',
+  //     interests: [],
+  //   });
+  // };
 
   let stepContent;
   switch (currentStep) {
@@ -236,12 +271,11 @@ function StepOne({ formData, setFormData, setCurrentStep, countries, cities, set
 
 function StepTwo({ formData, setFormData, setCurrentStep }) {
   const budgetRanges = [
-    { value: 'lessThan500', label: 'Less than 500 pounds' },
-    { value: '500to1000', label: '500 - 1000 pounds' },
-    { value: '1000to1500', label: '1000 - 1500 pounds' },
-    { value: '1500to2000', label: '1500 - 2000 pounds' },
-    { value: 'moreThan2000', label: 'More than 2000 pounds' },
+    { value: 'low', label: 'Low Budget' },
+    { value: 'medium', label: 'Medium Budget' },
+    { value: 'high', label: 'High Budget' },
   ];
+
 
   const activityOptions = [
     { "value": "sightseeing", "label": "Sightseeing" },
