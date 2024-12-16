@@ -1,0 +1,21 @@
+@media (min-width: 992px) {
+  .about {
+    padding-top: 100px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .about::before {
+    content: "";
+    position: absolute;
+    top: -80px; /* Dopasowuje wcięcie */
+    left: 50%;
+    width: 110%;
+    height: 150px; /* Reguluje wysokość krzywizny */
+    background-color: #FFD54F; /* Tło poprzedniej sekcji */
+    border-radius: 0% 0% 50% 50%; /* Tworzy zaokrąglenie do góry */
+    transform: translateX(-50%);
+    z-index: -1;
+  }
+}

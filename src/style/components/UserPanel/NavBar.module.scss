@@ -1,0 +1,7 @@
+.dropdown {
+  cursor: pointer;
+  &::after {
+    display: none !important;
+  }
+}
+
