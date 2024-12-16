@@ -39,7 +39,6 @@ export default function NewRouteForm() {
     fetchCountries();
   }, []);
 
-<<<<<<< HEAD
 
   const generateRoute = async () => {
     try {
@@ -89,22 +88,6 @@ export default function NewRouteForm() {
   //     interests: [],
   //   });
   // };
-=======
-  const generateRoute = () => {
-    console.log("Generate Route function is called");
-    console.log("Generating route with data:", formData);
-    setFormData({
-      destinations: [],
-      dateFrom: '',
-      dateTo: '',
-      transportation: '',
-      accommodation: '',
-      specialRequests: '',
-      budget: '',
-      interests: [],
-    });
-  };
->>>>>>> cf81c8420c28ba504619877a57e7dba9302b8e2e
 
   let stepContent;
   switch (currentStep) {
@@ -288,22 +271,12 @@ function StepOne({ formData, setFormData, setCurrentStep, countries, cities, set
 
 function StepTwo({ formData, setFormData, setCurrentStep }) {
   const budgetRanges = [
-<<<<<<< HEAD
     { value: 'low', label: 'Low Budget' },
     { value: 'medium', label: 'Medium Budget' },
     { value: 'high', label: 'High Budget' },
   ];
 
 
-=======
-    { value: 'lessThan500', label: 'Less than 500 pounds' },
-    { value: '500to1000', label: '500 - 1000 pounds' },
-    { value: '1000to1500', label: '1000 - 1500 pounds' },
-    { value: '1500to2000', label: '1500 - 2000 pounds' },
-    { value: 'moreThan2000', label: 'More than 2000 pounds' },
-  ];
-
->>>>>>> cf81c8420c28ba504619877a57e7dba9302b8e2e
   const activityOptions = [
     { "value": "sightseeing", "label": "Sightseeing" },
     { "value": "hiking", "label": "Hiking" },
