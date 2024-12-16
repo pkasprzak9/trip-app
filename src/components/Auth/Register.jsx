@@ -192,6 +192,7 @@ function RegisterForm() {
       const token = data.token;
 
       localStorage.setItem("authToken", token);
+      localStorage.setItem('user', JSON.stringify(data.user));
       setIsUserLoaded(true);
       login();
 
