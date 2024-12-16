@@ -62,7 +62,7 @@ export default function DisplayRoute() {
       </Card>
 
       {/* Szczegółowy Plan Podróży */}
-      <Accordion defaultActiveKey="0" alwaysOpen>
+      <Accordion defaultActiveKey="0">
         {itinerary.map((dayPlan, index) => (
           <Accordion.Item eventKey={String(index)} key={index}>
             <Accordion.Header>
