@@ -14,6 +14,7 @@ export default function NavBar() {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     addData({});
     logout();
     navigate('/');
