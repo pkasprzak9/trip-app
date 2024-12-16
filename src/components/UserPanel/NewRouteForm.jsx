@@ -226,7 +226,7 @@ function StepOne({ formData, setFormData, setCurrentStep, countries, cities, set
               </Button>
             </div>
 
-            <div className="w-100">
+            <div className="text-center">
               {formData.destinations.map((destination, index) => (
                 <div key={index} className="d-flex align-items-center mb-2">
                   <span>{destination.country} - {destination.city}</span>
