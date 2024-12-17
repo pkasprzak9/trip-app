@@ -8,6 +8,7 @@ export default function Header() {
     <div className="bg-secondary pt-lg-5 pb-5 pb-lg-0">
       <Container fluid="md py-5">
         <Row className="justify-content-center align-items-center py-5">
+          {/* NAGŁÓWEK */}
         <Col xs={10} lg={6} className="text-center text-lg-start">
             <h1 className="display-3 mb-3 text-primary">Discover Your Next Adventure</h1>
             <p className="display-5 text-muted">Personalized travel routes powered by AI to make your journey unforgettable.</p>
@@ -15,6 +16,7 @@ export default function Header() {
             {/* Tutaj znowu jest LINK bo używam React Router do nawigowania między stronami */}
             <Button size="lg" className="mt-5" as={Link} to={"/register"}>Start Now</Button>
           </Col>
+          {/* OBRAZEK */}
           {/* Na małych ekranach ukrywam grafikę (d-none) */}
           <Col xs="8" lg="6" className="d-none d-lg-block mb-5 mb-lg-0">
             <img src={headerImage} className="img-fluid" alt="Man standing in front of the earth globe with map in his hand" />
