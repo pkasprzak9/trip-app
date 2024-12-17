@@ -15,6 +15,7 @@ export default function StartPage() {
       <About></About>
       <HowItWorks></HowItWorks>
       <Benefits></Benefits>
+      {/* Sekcja features jest gotowa, ale mi nie pasowała */}
       {/* <Features></Features> */}
       <Contact></Contact>
       <Footer></Footer>
