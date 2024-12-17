@@ -6,6 +6,7 @@ export default function Footer() {
   return (
     <footer className="bg-secondary">
       <Container fluid="md">
+        {/* SOCIALE */}
         <Row className="justify-content-center align-items-center">
           <Col xs="10" lg="6" className="text-center mt-3">
             <a href="" className="icon-link text-primary" aria-label="Facebook">
@@ -22,6 +23,7 @@ export default function Footer() {
             </a>
           </Col>
         </Row>
+        {/* znak wodny czy jak to tam */}
         <Row className="justify-content-center align-items-center">
           <Col xs="10" lg="6" className="text-center mt-2 text-primary">
             <p>&copy; {new Date().getFullYear()} Pathify. All rights reserved.</p>
