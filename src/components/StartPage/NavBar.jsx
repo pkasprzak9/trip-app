@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { Navbar, Nav, Container, Offcanvas, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import styles from '../../style/components/StartPage/NavBar.module.scss';
 
 export default function NavBar() {
-  // Zarządzanie stanem widoczności offcanvas
   const [showOffcanvas, setShowOffcanvas] = useState(false);
 
   const handleCloseOffcanvas = () => setShowOffcanvas(false);
@@ -22,7 +21,7 @@ export default function NavBar() {
           aria-label="Toggle navigation"
           aria-controls="offcanvasNavbar"
           style={{ border: 'none' }}
-          onClick={handleShowOffcanvas} // Pokazuje offcanvas po kliknięciu
+          onClick={handleShowOffcanvas}
         />
 
         {/* OFFCANVAS */}
@@ -32,8 +31,8 @@ export default function NavBar() {
           placement="end"
           role="dialog"
           className={styles.offcanvasBackground}
-          show={showOffcanvas} // Kontroluje widoczność offcanvas
-          onHide={handleCloseOffcanvas} // Zamknięcie offcanvas
+          show={showOffcanvas}
+          onHide={handleCloseOffcanvas}
         >
           {/* OFFCANVAS HEADER */}
           <Offcanvas.Header closeButton className="border-bottom">
@@ -41,13 +40,14 @@ export default function NavBar() {
           </Offcanvas.Header>
 
           {/* OFFCANVAS BODY */}
+          {/* Tutaj daję flex-lg-row, zeby na większych ekranach flex display był row, a nie jak domyślnie w offcanvas column */}
           <Offcanvas.Body className={`d-flex flex-column flex-lg-row ${styles.offcanvasContent}`}>
             <Nav className="justify-content-center align-items-center gap-3 flex-grow-1">
               <Nav.Link
                 href="#about"
                 aria-label="Learn more about Pathify"
                 className={styles.navLink}
-                onClick={handleCloseOffcanvas} // Zamknięcie offcanvas po kliknięciu
+                onClick={handleCloseOffcanvas}
               >
                 About
               </Nav.Link>
@@ -70,6 +70,7 @@ export default function NavBar() {
             </Nav>
             <Nav className="d-flex flex-row justify-content-center align-items-center mb-5 mb-lg-0">
               <Nav.Link
+                // Tutaj daje Link, bo linkuję inną stronę (logowanie). Dlatego nie używam href.
                 as={Link}
                 to={"/login"}
                 href="#"
@@ -81,6 +82,7 @@ export default function NavBar() {
                 Login
               </Nav.Link>
               <Button
+                // Tutaj tak jak powyżej
                 as={Link}
                 to={"/register"}
                 variant="primary"
