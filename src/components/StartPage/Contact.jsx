@@ -3,24 +3,28 @@ import { useState } from "react";
 import { Container, Form, Row, Col, FloatingLabel, Button } from "react-bootstrap";
 
 export default function Contact() {
+  // Dane formularza
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
   });
 
+  // Błędy walidacji
   const [formErrors, setFormErrors] = useState({
     name: null,
     email: null,
     message: null
   });
 
+  // Czy użytkownik odwiedził pole
   const [touched, setTouched] = useState({
     name: false,
     email: false,
     message: false
   });
 
+  // Czy imię nie jest puste
   const validateName = name => {
     if (!name.trim()) {
       return 'Name is required.'
@@ -28,12 +32,13 @@ export default function Contact() {
     return null;
   };
 
+  // Czy poprawna forma mail i czy nie puste (regex)
   const validateEmail = email => {
     if (!email.trim()) {
       return 'Email is required.'
     };
 
-    const emailRegex = /\S+@\S+\.\S+/;
+    const emailRegex = /\S+@\S+\.\S+/;  // regex
     if (!emailRegex.test(email)) {
       return 'Enter correct email address.'
     };
@@ -41,6 +46,7 @@ export default function Contact() {
     return null;
   };
 
+  // Czy wiadomość nie pusta
   const validateMessage = message => {
     if (!message.trim()) {
       return 'Your message cannot be empty.'
@@ -49,6 +55,7 @@ export default function Contact() {
     return null;
   };
 
+  // aktualizacja stanów formularza
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -58,6 +65,7 @@ export default function Contact() {
     }));
   };
 
+  // ustawienie pól jako dotknięte i ich walidacja
   const handleBlur = (e) => {
     const { name } = e.target;
 
@@ -68,6 +76,9 @@ export default function Contact() {
 
     let error = null;
 
+    // walidacja pól
+    // jeśli jest ok to zwraca wiadomość - error
+    // jesli jest ok to zwraca null
     switch(name) {
       case 'name':
         error = validateName(formData.name);
@@ -82,35 +93,42 @@ export default function Contact() {
         break;
     }
 
+    // aktualizuje stan z błędami
     setFormErrors(prevErrors => ({
       ...prevErrors,
       [name]: error
     }))
   };
 
+  // obsługa submita
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // walidacja pól
     const nameError = validateName(formData.name);
     const emailError = validateEmail(formData.email);
     const messageError = validateMessage(formData.message);
 
+    // ustawienie errorów jak są jakieś
     setFormErrors({
       name: nameError,
       email: emailError,
       message: messageError
     });
 
+    // ustawienie pól jako dotknięte
     setTouched({
       name: true,
       email: true,
       message: true
     });
 
+    // jak jest jakiś błąd to przerywamy (jak któreś z pól nie jest nulem)
     if (nameError || emailError || messageError) {
       return;
     }
 
+    // Dane do wysłania
     const dataToSend = {
       name: formData.name,
       email: formData.email,
@@ -122,6 +140,7 @@ export default function Contact() {
 
     // }
 
+    // Reset formularza jak się wszystko powiedzie
     setFormData({
       name: '',
       email: '',
@@ -145,13 +164,16 @@ export default function Contact() {
   return (
     <section id="contact">
       <Container fluid="md" className="py-5">
+        {/* NAGŁÓWEK SEKCJI */}
         <div className="text-center px-5">
           <h2 className="text-primary">We’re Here for You</h2>
           <p className="lead text-muted">Whatever you need, we’re just a message away. Contact us for any inquiries or support.</p>
         </div>
 
         <Row className="justify-content-center align-items-center mt-5 py-5">
+          {/* 10/11 -> 8/11 -> 6/11 */}
           <Col xs="10" lg="8" xl="6">
+            {/* noValidate: wyłącza domyślną walidację przeglądarki */}
             <Form noValidate onSubmit={handleSubmit}>
               <FloatingLabel
                 controlId="name"
@@ -163,11 +185,12 @@ export default function Contact() {
                   placeholder="Mario"
                   value={formData.name}
                   onChange={handleChange}
-                  onBlur={handleBlur}
-                  isInvalid = {touched.name && !!formErrors.name}
-                  isValid = {touched.name && !formErrors.name}
+                  onBlur={handleBlur} // uruchamia funkcję po opuszczeniu pola
+                  isInvalid = {touched.name && !!formErrors.name} // na czerwono
+                  isValid = {touched.name && !formErrors.name} // na zielono
                   aria-invalid = {touched.name && !!formErrors.name}
                   aria-describedby="name-error"/>
+                {/* wyświetla komunikat z błędem w przypadku invalid */}
                 <Form.Control.Feedback
                   type="invalid"
                   id="name-error">
