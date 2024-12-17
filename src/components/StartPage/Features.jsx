@@ -7,9 +7,11 @@ import img3 from "../../assets/images/Men-planning-for-holiday.svg"
 import img4 from "../../assets/images/Museum-Photography.svg"
 
 export default function Features() {
+  // Możliwość optymalizacji: dynamiczne mapowanie danych
   return (
     <section id="features">
       <Container fluid="md" className="py-5">
+        {/* NAGŁÓWEK SEKCJI */}
         <div className="text-center px-5">
           <h2 className="text-primary">Your Journey Awaits</h2>
           <p className="lead text-muted">
@@ -18,6 +20,7 @@ export default function Features() {
         </div>
 
         <Row className="align-items-stretch g-5 g-lg-3 justify-content-center mt-5 py-5">
+        {/* domyślnie 11 kolumn, potem 4/11, potem 3/11 */}
           <Col xs="11" lg="4" xl="3">
             <Card className={`${styles.card} h-100`}>
               <Card.Img variant="top" src={img1} className={`${styles.cardImg} bg-light`}/>
