@@ -3,9 +3,11 @@ import { Container, Row, Col } from "react-bootstrap";
 import { Gear, LightningCharge, Phone, Clock  } from "react-bootstrap-icons";
 
 export default function Benefits() {
+  // W przyszłości jako optymalizację można wprowadzić dynamiczne mapowanie danych
   return (
     <section id="benefits" className="bg-light">
       <Container fluid="md" className="py-5">
+        {/* NAGŁÓWEK SEKCJI */}
         <div className="text-center px-5">
           <h2 className="text-primary">Why Planning with Pathify Feels Different</h2>
           <p className="lead text-muted">
@@ -14,7 +16,9 @@ export default function Benefits() {
         </div>
 
         <Row className="align-items-stretch g-4 justify-content-center mt-5 py-5">
+          {/* na małych każdy benefit oddzielnie w rzędzie, na dużych dwa (czyli 2x2) */}
         <Col xs="10" lg="5" className="text-center">
+            {/* aria-hidden="true": ikony ignorowane przez czytniki */}
             <LightningCharge aria-hidden="true" width={50} height={50} className="text-primary mb-3"></LightningCharge>
             <h3 className="text-primary">Speed</h3>
             <p>Plan your perfect route in seconds with the power of AI.</p>
