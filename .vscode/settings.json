@@ -1,3 +1,6 @@
 {
-  "liveSassCompile.settings.showOutputWindowOn": "None"
+  "liveSassCompile.settings.showOutputWindowOn": "None",
+  "cSpell.words": [
+    "responsywności"
+  ]
 }
