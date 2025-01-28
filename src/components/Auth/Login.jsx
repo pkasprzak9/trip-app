@@ -1,17 +1,9 @@
-import React, { useContext, useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Navbar, Container, Row, Col, Form, Button, FloatingLabel } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { Container, Row, Col, Form, Button, FloatingLabel } from "react-bootstrap";
+import NavBar from "./NavBar";
 
-function NavBar() {
-  return (
-    <Navbar bg="secondary" sticky="top" className="py-3">
-      <Container fluid="lg" className="justify-content-center">
-        <Navbar.Brand as={Link} to={"/"} className="fs-4 fw-bold text-primary text-center">Pathify</Navbar.Brand>
-      </Container>
-    </Navbar>
-  );
-}
-
+<NavBar />
 function LoginForm() {
   const [formData, setFormData] = useState({
     email: '',
