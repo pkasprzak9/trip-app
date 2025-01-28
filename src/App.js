@@ -13,37 +13,35 @@ import DisplayRoute from "./components/UserPanel/DisplayRoute";
 
 function App() {
   return (
-    <AuthProvider>
-      <UserProvider>
-        {/* odpowiada za śledzenie url */}
-        <Router>
-          {/* definiuje trasy */}
-          <Routes>
-            {/* Publiczne trasy */}
-            <Route path="/" element={<StartPage />} />
-            {/* Tutaj można podpisać token i zapisać go w local storage */}
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
+    <>
+      {/* odpowiada za śledzenie url */}
+      <Router>
+        {/* definiuje trasy */}
+        <Routes>
+          {/* Publiczne trasy */}
+          <Route path="/" element={<StartPage />} />
+          {/* Tutaj można podpisać token i zapisać go w local storage */}
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
 
-            {/* Prywatne trasy */}
-            <Route
-              path="/dashboard/*"
-              element={
-                // sprawdzam czy jest token w local storage i jeśli tak to renderuje UserPanel
-                <PrivateRoute>
-                  <UserPanel />
-                </PrivateRoute>
-              }
-            >
-              {/* zagnieżdżone strony w UserPanel */}
-              <Route path="" element={<Dashboard />} />
-              <Route path="new" element={<NewRouteForm />} />
-              <Route path="display" element={<DisplayRoute />} />
-            </Route>
-          </Routes>
-        </Router>
-      </UserProvider>
-    </AuthProvider>
+          {/* Prywatne trasy */}
+          <Route
+            path="/dashboard/*"
+            element={
+              // sprawdzam czy jest token w local storage i jeśli tak to renderuje UserPanel
+              <PrivateRoute>
+                <UserPanel />
+              </PrivateRoute>
+            }
+          >
+            {/* zagnieżdżone strony w UserPanel */}
+            <Route path="" element={<Dashboard />} />
+            <Route path="new" element={<NewRouteForm />} />
+            <Route path="display" element={<DisplayRoute />} />
+          </Route>
+        </Routes>
+      </Router>
+    </>
   );
 }
 

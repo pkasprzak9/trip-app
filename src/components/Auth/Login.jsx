@@ -1,8 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Navbar, Container, Row, Col, Form, Button, FloatingLabel } from "react-bootstrap";
-import { AuthContext } from "../../context/AuthContext";
-import { UserContext } from "../../context/UserContext";
 
 function NavBar() {
   return (
@@ -37,9 +35,6 @@ function LoginForm() {
 
 
   const navigate = useNavigate();
-
-  const { login } = useContext(AuthContext);
-  const { userData, addData } = useContext(UserContext);
 
   const validateEmail = email => {
     if (!email.trim()) {
@@ -139,8 +134,6 @@ function LoginForm() {
       if (response.ok) {
         localStorage.setItem('token', data.token);
         localStorage.setItem('user', JSON.stringify(data.user));
-        addData(data.user);
-        login();
 
         setIsUserLoaded(true);
 

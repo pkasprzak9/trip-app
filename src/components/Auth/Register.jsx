@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Navbar, Container, Row, Col, Form, Button, FloatingLabel, Modal, ModalHeader } from "react-bootstrap";
-import { AuthContext } from "../../context/AuthContext";
-import { UserContext } from "../../context/UserContext";
 
 function NavBar() {
   return (
@@ -38,9 +36,6 @@ function RegisterForm() {
     password: false,
     confirmPassword: false
   });
-
-  const { login } = useContext(AuthContext);
-  const { addData } = useContext(UserContext);
 
   const [feedbackMessage, setFeedbackMessage] = useState('');
 
@@ -193,8 +188,6 @@ function RegisterForm() {
 
       localStorage.setItem("authToken", token);
       localStorage.setItem('user', JSON.stringify(data.user));
-      setIsUserLoaded(true);
-      login();
 
       setFormData({
         firstName: '',

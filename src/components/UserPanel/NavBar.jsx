@@ -9,14 +9,10 @@ import { UserContext } from "../../context/UserContext";
 
 export default function NavBar() {
   const navigate = useNavigate();
-  const { logout } = useContext(AuthContext);
-  const { addData } = useContext(UserContext);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    addData({});
-    logout();
     navigate('/');
   }
 
