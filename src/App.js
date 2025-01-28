@@ -4,8 +4,6 @@ import StartPage from "./components/StartPage/StartPage";
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
 import PrivateRoute from "./PrivateRoute";
-import { AuthProvider } from "./context/AuthContext";
-import { UserProvider } from "./context/UserContext";
 import UserPanel from "./components/UserPanel/UserPanel";
 import Dashboard from "./components/UserPanel/Dashboard";
 import NewRouteForm from "./components/UserPanel/NewRouteForm";

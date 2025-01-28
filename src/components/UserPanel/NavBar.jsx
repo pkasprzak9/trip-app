@@ -4,8 +4,6 @@ import { Navbar, Nav, Container, Dropdown } from "react-bootstrap";
 import { Person } from "react-bootstrap-icons";
 import styles from "../../style/components/UserPanel/NavBar.module.scss";
 import avatar from "../../assets/images/user.png";
-import { AuthContext } from "../../context/AuthContext";
-import { UserContext } from "../../context/UserContext";
 
 export default function NavBar() {
   const navigate = useNavigate();
