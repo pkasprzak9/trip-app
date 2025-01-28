@@ -1,4 +1,3 @@
-// src/App.js
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import StartPage from "./components/StartPage/StartPage";
@@ -16,23 +15,27 @@ function App() {
   return (
     <AuthProvider>
       <UserProvider>
+        {/* odpowiada za śledzenie url */}
         <Router>
+          {/* definiuje trasy */}
           <Routes>
-            {/* Public routes */}
+            {/* Publiczne trasy */}
             <Route path="/" element={<StartPage />} />
+            {/* Tutaj można podpisać token i zapisać go w local storage */}
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
 
-            {/* Private routes with layout */}
+            {/* Prywatne trasy */}
             <Route
               path="/dashboard/*"
               element={
+                // sprawdzam czy jest token w local storage i jeśli tak to renderuje UserPanel
                 <PrivateRoute>
                   <UserPanel />
                 </PrivateRoute>
               }
             >
-              {/* Nested routes inside UserPanel */}
+              {/* zagnieżdżone strony w UserPanel */}
               <Route path="" element={<Dashboard />} />
               <Route path="new" element={<NewRouteForm />} />
               <Route path="display" element={<DisplayRoute />} />
