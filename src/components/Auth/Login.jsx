@@ -3,30 +3,41 @@ import { useNavigate } from "react-router-dom";
 import { Container, Row, Col, Form, Button, FloatingLabel } from "react-bootstrap";
 import NavBar from "./NavBar";
 
+// GŁÓWNA FUNKCJA
 function LoginForm() {
+
+  // STAN FORMULARZA
+  // Przechowuje wartości pól
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   })
+  // Przechowuje błędy walidacji
   const [formErrors, setFormErrors] = useState({
     email: null,
     password: null
   })
 
+  // Śledzi czy pole było kliknięte
   const [touched, setTouched] = useState({
     email: false,
     password: false
   })
 
+
+  // feedbackMessage -> komunikat o błędzie lub sukcesie
+  // isSubmitting -> zapobiega wielokrotnemu kliknięciu w submit
+  // flaga do przekierowania po udanym logowaniu
   const [feedbackMessage, setFeedbackMessage] = useState('');
-
   const [isSubmitting, setIsSubmitting] = useState(false);
-
   const [isUserLoaded, setIsUserLoaded] = useState(false);
 
-
+  // do przekierowania po udanym logowaniu
   const navigate = useNavigate();
 
+
+  // FUNKCJE WALIDACJI
+  // walidacja maila
   const validateEmail = email => {
     if (!email.trim()) {
       return 'Email is required.'
@@ -40,6 +51,7 @@ function LoginForm() {
     return null;
   };
 
+  // walidacja hasła
   const validatePassword = (password) => {
     if (!password.trim()) {
       return "Password is required.";
@@ -47,25 +59,27 @@ function LoginForm() {
     return null;
   };
 
+  // OBSŁUGA ZMIAN W FORMULARZU
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     setFormData(prevData => ({
       ...prevData,
       [name]: value
     }));
   };
 
+  // OBSŁUGA BLUR
+  // (wyjście z pola) w formularzu
+  // razem z walidacją po opuszczeniu
   const handleBlur = (e) => {
     const { name } = e.target;
-
     setTouched(prevTouched => ({
       ...prevTouched,
       [name]: true
     }));
 
+    // walidacja, która zwraca wiadomość z błędem albo null
     let error = null;
-
     switch(name) {
       case 'email':
         error = validateEmail(formData.email);
@@ -77,41 +91,47 @@ function LoginForm() {
         break;
     }
 
+    // aktualizuje stan z błędami o ewentualne nowe
     setFormErrors(prevErrors => ({
       ...prevErrors,
       [name]: error
     }))
   }
 
+  // OBSŁUGA WYSŁANIA FORMULARZA
   const handleSubmit = async (e) => {
+    // blokuje domyślne odświeżenie strony po wysłaniu
     e.preventDefault();
 
+    // zapobiega wielokrotnemu wysłaniu tych samych danych
     if (isSubmitting) return;
     setIsSubmitting(true);
 
+    // walidacja przed wysłaniem (blur może nie obsłużyć jak użytkownik nie odwiedzi żadnego z pól formularza)
     const emailError = validateEmail(formData.email);
     const passwordError = validatePassword(formData.password);
-
     setFormErrors({
       email: emailError,
       password: passwordError
     });
-
     setTouched({
       email: true,
       password: true
     });
 
-    if (emailError || passwordError) {
+    // jak są błędy to formularz nie zostaje wysłany
+    if (Object.values(formErrors).some(error => error !== null)) {
       return;
     };
 
-    const dataToSend = {
-      email: formData.email,
-      password: formData.password
-    };
-
     try {
+      // pobieranie danych z formularza do wysłania
+      const dataToSend = {
+        email: formData.email,
+        password: formData.password
+      };
+
+      // wysyłanie żądania na serwer
       const response = await fetch('http://localhost:5001/api/auth', {
         method: 'POST',
         headers: {
@@ -120,41 +140,46 @@ function LoginForm() {
         body: JSON.stringify(dataToSend)
       });
 
+      // obsługa błędów serwera
+      if (!response.ok) {
+        const responseData = await response.json();
+        setFeedbackMessage(responseData.message || 'Login failed. Please try again.');
+      };
+
+      // zapisywanie użytkownika z odpowiedzi
+      // zmiana flagi na zalogowanego
+      // ustawianie isUserLoaded na true
       const data = await response.json();
+      localStorage.setItem('isLoggedIn', 'true');
+      localStorage.setItem('user', JSON.stringify(data.user));
+      setIsUserLoaded(true);
 
-      if (response.ok) {
-        localStorage.setItem('isLoggedIn', 'true');
-        localStorage.setItem('user', JSON.stringify(data.user));
-        setIsUserLoaded(true);
+      // Resetowanie formularza po udanym logowaniu
+      setFormData({
+        email: '',
+        password: ''
+      });
+      setFormErrors({
+        email: null,
+        password: null
+      });
+      setTouched({
+        email: false,
+        password: false
+      });
+      setFeedbackMessage('');
 
-        setFormData({
-          email: '',
-          password: ''
-        });
-
-        setFormErrors({
-          email: null,
-          password: null
-        });
-
-        setTouched({
-          email: false,
-          password: false
-        });
-
-        setFeedbackMessage('');
-      } else {
-        setFeedbackMessage(data.message || 'Login failed. Please try again.');
-      }
-
-    } catch(err) {
+    }
+    // obsługa błędów
+    catch(err) {
       console.log(err);
       setFeedbackMessage('An error occurred. Please try again later.');
     }
+    // ustawia flagę na false, gdyby użytkownik chciał wysłać ponownie formularz w przyszłości
     setIsSubmitting(false);
   };
 
-
+  // przekierowuje na dashboard po udanym logowaniu
   useEffect(() => {
     if(isUserLoaded) {
       navigate('/dashboard');
@@ -163,18 +188,21 @@ function LoginForm() {
   }, [isUserLoaded, navigate]);
 
 
+  // zwracanie głównego komponentu
   return (
     <div className="">
       <Container fluid="md" className="justify-content-center align-items-center py-5 mt-3">
+        {/* NAGŁÓWEK */}
         <div className="text-center px-5">
           <h2 className="display-5">Welcome Back!</h2>
           <p className="text-muted fs-3">Log in to explore your personalized travel routes and experiences.</p>
         </div>
 
+        {/* FORMULARZ */}
         <Row className="mt-5 justify-content-center align-items-center">
           <Col xs="10" lg="6">
             <Form noValidate onSubmit={handleSubmit}>
-              {/* Email input with FloatingLabel */}
+              {/* POLE Z MAILEM */}
               <FloatingLabel
                 controlId="email"
                 label="Email address"
@@ -197,7 +225,7 @@ function LoginForm() {
                 </Form.Control.Feedback>
               </FloatingLabel>
 
-              {/* Password input with FloatingLabel */}
+              {/* POLE Z HASŁEM */}
               <FloatingLabel
                 controlId="formPassword"
                 label="Password"
@@ -216,18 +244,19 @@ function LoginForm() {
                 </Form.Control.Feedback>
               </FloatingLabel>
 
-              {/* Submit button */}
+              {/* PRZYCISK SUBMIT*/}
               <Button variant="primary" type="submit" className="w-100 mb-3">
                 Log In
               </Button>
 
-              {/* Forgot Password description and link */}
+              {/* SEKCJA ZAPOMNIAŁEM HASŁA (FUNKCJONALNOŚĆ DO ZAIMPLEMENTOWANIA) */}
               <div className="text-center">
                 <p className="text-muted">Forgot your password?
                   <a href="#" className="text-primary text-decoration-none ms-2">Click here to reset it</a>.
                 </p>
               </div>
 
+              {/* WIADOMOŚĆ Z FEEDBACKIEM (MOŻNA POMYŚLEĆ O MODALU TAK JAK W REJESTRACJI) */}
               {feedbackMessage && (
                 <div className="text-danger text-center my-3">
                   {feedbackMessage}
@@ -241,6 +270,7 @@ function LoginForm() {
   );
 }
 
+// EKSPORT FUNKCJI
 export default function Login() {
   return (
     <>

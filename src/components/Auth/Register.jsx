@@ -3,7 +3,7 @@ import { Button, Col, Container, FloatingLabel, Form, Modal, ModalHeader, Row } 
 import { Link, useNavigate } from "react-router-dom";
 import NavBar from "./NavBar";
 
-// Główny komponent
+// GŁÓWNA FUNKCJA
 function RegisterForm() {
   // Każde miejsce z formularza rejestracji ma swoje miejsce w formData
   const [formData, setFormData] = useState({
@@ -203,8 +203,9 @@ function RegisterForm() {
         throw new Error(responseData.message || 'Failed to register');
       };
 
-      // zapisywanie tokenu i danych użytkownika w localstorage
+      // zapisywanie danych użytkownika w localstorage
       // i ustawianie isUserLoaded na true
+      // oraz zmiana flagi z logowaniem
       const data = await response.json();
       localStorage.setItem('isLoggedIn', 'true');
       localStorage.setItem('user', JSON.stringify(data.user));
@@ -234,6 +235,7 @@ function RegisterForm() {
         password: false,
         confirmPassword: false
       });
+      setFeedbackMessage('');
     }
     // obsługa błędów
     catch (err) {
@@ -394,7 +396,7 @@ function RegisterForm() {
   );
 }
 
-// EKSPORT KOMPONENTU
+// EKSPORT FUNKCJI
 export default function Register() {
   return (
     <>
