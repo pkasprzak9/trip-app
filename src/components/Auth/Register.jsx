@@ -3,7 +3,6 @@ import { Button, Col, Container, FloatingLabel, Form, Modal, ModalHeader, Row } 
 import { Link, useNavigate } from "react-router-dom";
 import NavBar from "./NavBar";
 
-<NavBar />
 // Główny komponent
 function RegisterForm() {
   // Każde miejsce z formularza rejestracji ma swoje miejsce w formData

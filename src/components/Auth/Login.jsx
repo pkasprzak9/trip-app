@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { Container, Row, Col, Form, Button, FloatingLabel } from "react-bootstrap";
 import NavBar from "./NavBar";
 
-<NavBar />
 function LoginForm() {
   const [formData, setFormData] = useState({
     email: '',
