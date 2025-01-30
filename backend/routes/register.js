@@ -1,11 +1,11 @@
 const express = require('express');
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 const router = express.Router();
 
 // POST /api/register
 router.post('/', async (req, res) => {
+  // Pobieranie danych z zapytania
   const { firstName, lastName, email, password } = req.body;
 
   try {
