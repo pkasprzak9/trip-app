@@ -8,7 +8,7 @@ export default function UserPanel() {
     <>
       <NavBar />
       <Container className="mt-5">
-        {/* Generowanie podstron UserPanel Outletem (tego co pisałeś w App.js) */}
+        {/* Generowanie podstron UserPanel Outletem (tego co pisałem w App.js) */}
         <Outlet />
       </Container>
     </>
