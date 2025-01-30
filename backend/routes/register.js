@@ -4,21 +4,22 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
 
-// POST /api/users
+// POST /api/register
 router.post('/', async (req, res) => {
   const { firstName, lastName, email, password } = req.body;
 
   try {
-    // Check if user already exists
+    // Sprawdzenie czy użytkownik istnieje w bazie danych
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.status(400).json({ message: 'User already exists' });
+      return res.status(400).json({ message: 'User already exists' }); // Bad request
     };
 
-    // Hash the password
+    // Hashowanie hasła (10 rund salt)
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Creating new user
+    // Tworzenie nowego użytkownika
+    // na podstawie schematu User
     const newUser = new User({
       firstName,
       lastName,
@@ -26,17 +27,13 @@ router.post('/', async (req, res) => {
       password: hashedPassword
     });
 
-    // Saving new user
+    // Zapisywanie nowego użytkownika
     await newUser.save();
 
-    // Generating JWT
-    const token = jwt.sign({ id: newUser._id, email: newUser.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
-
-    // Return response with new user (without password)
+    // Zwracanie odpowiedzi z użytkownikiem (bez hasła) i wygenerowanym tokenem
     res.status(201).json({
       message: 'User registered successfully',
-      user: { firstName: newUser.firstName, lastName: newUser.lastName, email: newUser.email },
-      token
+      user: { firstName: newUser.firstName, lastName: newUser.lastName, email: newUser.email }
     });
   } catch (err) {
     res.status(500).json({ error: 'Server error' });

@@ -20,13 +20,9 @@ router.post('/', async (req, res) => {
       return res.status(400).json({ message: 'Invalid credentials.' });
     }
 
-    // Podpisanie tokenu (ważnego przez godzinę)
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-
     // Zwrócenie odp do klienta
     res.status(200).json({
       message: 'Logged in successfully.',
-      token,
       user: {
         email: user.email,
         firstName: user.firstName,
